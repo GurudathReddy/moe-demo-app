@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import './App.css';
+import { Link, Switch, Route } from 'react-router-dom';
 import logoRight from './assets/img/img-logo-singov.png';
 import logoLeft from './assets/img/moe-logo.png';
+import RolesList from './components/roles-list/roles-list';
+import Home from './components/home/home';
 
 class App extends Component {
   render() {
@@ -10,7 +13,7 @@ class App extends Component {
         <div className="header">
           <div className="container logo">
             <div className="leftLogo">
-              <img src={logoLeft} alt="Ministry of Education Singapore"/>
+              <Link to='/'><img src={logoLeft} alt="Ministry of Education Singapore"/></Link>
             </div>
             <div className="rightLogo">
               <img src={logoRight} alt="Singapore Government"/>
@@ -42,7 +45,7 @@ class App extends Component {
                       <li><a href="">Direct Admissions</a></li>
                       <li><a href="">Returning Singaporeans</a></li>
                       <li><a href="">Scholarships</a></li>
-                      <li><a href="">Roles Maintenance</a></li>
+                      <li><Link to='/roles'>Roles Maintenance</Link></li>
                     </ul>
                   </li>
                   <li className="primary-list">
@@ -76,10 +79,12 @@ class App extends Component {
               </nav>
             </div>
           </div>
-        <p className="parent-container">
-          
-         
-        </p>
+        <div className="parent-container">
+          <Switch>
+              <Route exact path='/' component={Home}/>
+              <Route path='/roles' component={RolesList}/>
+          </Switch>
+        </div>
       </div>
     );
   }
